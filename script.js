@@ -6,18 +6,22 @@ var surname = document.getElementById('surname');
 var users = ["Bianco","Rossi","Magellano","Tarantino","Cervellera"];
 var result = document.getElementById('result');
 var list = document.getElementById('list');
+var error = document.getElementById('error');
 
 btn.addEventListener('click', function() {
 
+  error.className = "hidden";
   result.className = "hidden";
   list.innerHTML = "";
   list.className = "hidden";
 
-  if (surname.value) {
+  if (surname.value && isNaN(surname.value)) {
     var presente = false;
     for (var i = 0; i < users.length; i++) {
       if (users[i] == surname.value) {
-        alert("Attenzione il tuo cognome è già presente!");
+        error.innerHTML = "Attenzione il tuo cognome è già presente!";
+        error.className = "show";
+        // alert("Attenzione il tuo cognome è già presente!");
         presente = true;
       }
     }
@@ -33,12 +37,14 @@ btn.addEventListener('click', function() {
           index = i;
         }
       }
-      result.className = "show";
       result.innerHTML = "Il tuo cognome è stato inserito nella " + (index + 1) + " posizione";
+      result.className = "show";
       list.className = "show";
     }
   } else {
-    alert("Attenzione inserisci il tuo cognome");
+    error.innerHTML = "Attenzione inserisci i dati correttamente";
+    error.className = "show";
+    // alert("Attenzione inserisci il tuo cognome");
   }
 
 
