@@ -3,7 +3,7 @@
 
 var btn = document.getElementById('insertSurname');
 var surname = document.getElementById('surname');
-var users = ["Bianco","Rossi","Magellano","Tarantino","Cervellera"];
+var users = ["Bianco","Rossi","Magellano","Tarantino","Cervellera","Marinosci","Paiano"];
 var result = document.getElementById('result');
 var list = document.getElementById('list');
 var error = document.getElementById('error');
@@ -28,7 +28,19 @@ btn.addEventListener('click', function() {
     if (!presente) {
       users.push(surname.value);
       console.log(users);
-      users.sort();
+
+      // algoritmo Bubble Sort per ordine crescente
+      for (var i = 0 ; i < users.length -1 ; i++) {
+        for (var j = 0; j < users.length - i - 1; j++) {
+          //se l'elemento è maggiore del successivo faccio lo swap degli elementi
+          if (users[j] > users[j+1]) {
+            var tmp = users[j+1];
+            users[j+1] = users[j];
+            users[j] = tmp;
+          }
+        }
+      }
+      // users.sort();
       console.log(users);
       var index;
       for (var i = 0; i < users.length; i++) {
